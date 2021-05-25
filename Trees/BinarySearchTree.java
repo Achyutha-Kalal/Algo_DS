@@ -3,7 +3,9 @@
 Developed by Achyutha Kalal
 Contains the BinarySearchTree structure with basic operations
 */
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 //Structure of BinarySearch Tree
@@ -110,5 +112,24 @@ public class BinarySearchTree {
             curr = insertRecursively(curr, arr[i]);
         }
         this.root = curr;
+    }
+    public List<Integer> find_ancestor(int child_val)
+    {
+        List<Integer> arr = new ArrayList<>(); 
+        BinaryNode tmp=root;
+        while(tmp!= null|| tmp.data==child_val)
+        {
+            if(tmp.data>child_val)
+            {
+            arr.add(tmp.data);
+            tmp=tmp.left;
+            }
+            if(tmp.data<child_val)
+            {
+            arr.add(tmp.data);
+            tmp=tmp.right;
+            }
+        }
+        return arr;
     }
 }

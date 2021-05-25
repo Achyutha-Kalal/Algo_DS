@@ -1,6 +1,7 @@
 {
     "java.project.sourcePaths": [
         "Assignments/Assignments",
-        "Assignments"
+        "Assignments",
+        "Trees"
     ]
 }
