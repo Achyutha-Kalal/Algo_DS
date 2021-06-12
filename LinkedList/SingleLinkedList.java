@@ -72,6 +72,71 @@ public class SingleLinkedList {
 
    }
 
+   // Find Length of the Single Linked List by using recursion approach
+   private int findLengthRecursively(SingleLinkedListNode curr_node)
+   {
+        if(curr_node==null)
+            return 0;
+        if(curr_node.next==null)
+            return 1;
+        else
+        {
+            return 1+findLengthRecursively(curr_node.next);
+        } 
+
+   }
+
+      // Find Length of the Single Linked List by using iterative approach
+   private int findLengthIteratively(SingleLinkedListNode curr_node)
+   {
+
+        if(curr_node==null)
+            return 0;
+        SingleLinkedListNode tmp=curr_node;
+        int count=1;
+        while(tmp.next!=null)
+        {    
+            tmp=tmp.next;
+            count++;
+        }
+        return count;  
+   }
+
+     // Search element in the Single Linked List by using recursion approach
+     private boolean searchRecursively(SingleLinkedListNode curr_node,int element)
+     {
+          if(curr_node.data==element)
+              return true;
+          else
+          {
+              return searchRecursively(curr_node.next,element);
+          }   
+     }
+  
+        // Search element in the Single Linked List by using iterative approach
+     private boolean searchIteratively(SingleLinkedListNode curr_node,int element)
+     {
+          SingleLinkedListNode tmp_node=curr_node;
+          boolean flag=false;
+          while(tmp_node!=null)
+          {    
+              if(tmp_node.data==element)
+            {
+                flag=true;
+                break;
+            }
+            tmp_node=tmp_node.next;
+              
+          }
+          return flag;  
+     }
+  
+    //Delete entire single linked list
+   private void deleteList(SingleLinkedListNode curr_node)
+    {
+        curr_node=null;
+    }
+
       //Delete Node from the root single linked list at a given position value
    public void deleteNodeAtPos(int pos)
    {
@@ -101,4 +166,35 @@ public class SingleLinkedList {
    {
         this.root=deleteNode(this.root, k);
    }
+
+         //Delete entire root linked list
+   public void deleteList()
+   {
+       deleteList(this.root);
+   }
+
+   // Find Length of the rootSingle Linked List by using recursion approach
+   public int findLengthRecursively()
+   {
+       return findLengthRecursively(this.root);
+   }
+
+      // Find Length of the root Linked List by using iterative approach
+   public int findLengthIteratively()
+   {
+       return findLengthIteratively(this.root);
+   }
+
+   // Search element in the root Linked List by using recursion approach
+   public boolean searchRecursively(int element)
+   {
+        return searchRecursively(this.root,element);
+   }
+
+      // Search element in the root Linked List by using iterative approach
+   public boolean searchIteratively(int element)
+   {
+    return searchIteratively(this.root,element);        
+   }
+          
 }

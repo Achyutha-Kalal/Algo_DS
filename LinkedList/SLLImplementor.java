@@ -14,8 +14,14 @@ public class SLLImplementor {
     head.insertStart(1);
     head.insertStart(0);
     head.printList();
-    head.deleteNodeAtPos(1);
-    head.printList();
+    System.out.println("Recursion Length count= "+head.findLengthRecursively());
+    System.out.println("Iteration Length count= "+head.findLengthIteratively());
+    System.out.println("find element value= "+head.searchIteratively(9));
+    System.out.println("find element value= "+head.searchRecursively(9));
+    System.out.println("find element value= "+head.searchIteratively(12));
+    System.out.println("find element value= "+head.searchIteratively(12));
+
+    
 }
     
 }
