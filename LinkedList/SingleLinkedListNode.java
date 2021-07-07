@@ -1,8 +1,7 @@
 public class SingleLinkedListNode {
     
-    int data;
-    SingleLinkedListNode next;
-    SingleLinkedListNode(){}
+    public int data;
+    public SingleLinkedListNode next;
     SingleLinkedListNode(int val)
     {
         this.data=val;

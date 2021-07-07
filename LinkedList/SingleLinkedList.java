@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 //Structure of Single Linked List and its operations
 public class SingleLinkedList {
    private SingleLinkedListNode root;
@@ -71,6 +73,47 @@ public class SingleLinkedList {
         
 
    }
+
+        //Print kth node from start in a linked list
+    private void printKthNodefromStart(SingleLinkedListNode curr_node,int k)
+    {     
+         
+     SingleLinkedListNode tmp_node=curr_node;
+             int count=0;
+             while(tmp_node!=null)
+             {
+                 if(count==k)
+                 {
+                     System.out.println(tmp_node.data);
+                     break;
+                 }
+                 count++;
+                 tmp_node=tmp_node.next;
+            }
+
+    }
+
+        //Print kth node from end in a linked list
+    private void printKthNodefromLast(SingleLinkedListNode curr_node,int k)
+    {     
+         
+        int len=findLengthRecursively(curr_node);
+        k=len-k;
+     SingleLinkedListNode tmp_node=curr_node;
+             int count=0;
+             while(tmp_node!=null)
+             {
+                 if(count==k)
+                 {
+                     System.out.println(tmp_node.data);
+                     break;
+                 }
+                 count++;
+                 tmp_node=tmp_node.next;
+            }
+
+    }
+         
 
    // Find Length of the Single Linked List by using recursion approach
    private int findLengthRecursively(SingleLinkedListNode curr_node)
@@ -196,5 +239,91 @@ public class SingleLinkedList {
    {
     return searchIteratively(this.root,element);        
    }
+    //Print kth node from start in root linked list
+    public void printKthNodefromStart(int k)
+    {    
+        printKthNodefromStart(this.root,k);
+    }
+    //Print kth node from end in root linked list
+    public void printKthNodefromLast(int k)
+    {    
+        printKthNodefromLast(this.root,k);
+    }
+   private void removeDuplicates(SingleLinkedListNode head_node)
+    {
+        SingleLinkedListNode curr_node=head_node,prev_node=head_node;
+        int count=0;
+        while(curr_node!=null)
+        {
+            if(curr_node.next!=null&&curr_node.next.data==curr_node.data)
+            {
+                prev_node=curr_node;
+                curr_node=curr_node.next.next;
+                count=0;
+                continue;
+            }
+            if(curr_node.next!=null&&curr_node.next.data!=curr_node.data)
+            {
+                count++;
+            }
+            if(count>1)
+            {
+                prev_node=prev_node.next;
+                count=0;
+            }
+            curr_node=curr_node.next;
+        }
+    }
+    public void removeDuplicates()
+    {
+        removeDuplicates(root);
+    }
+    private SingleLinkedListNode reverseLinkedList(SingleLinkedListNode curr_node)
+    {
+        SingleLinkedListNode stack_node=curr_node;
+        Stack<Integer> tmp_stack=new Stack<Integer>();
+        while(stack_node!=null)
+        {
+            tmp_stack.push(stack_node.data);
+            stack_node=stack_node.next;
+        }
+        SingleLinkedListNode final_node=new SingleLinkedListNode(tmp_stack.pop());
+        while(tmp_stack.empty()!=true)
+        {
+            insertLast(final_node,tmp_stack.pop());
+        }
+        return final_node;
+
+    }
+    public void reverseLinkedList()
+    {
+        this.root=reverseLinkedList(this.root);
+    }
+    private boolean checkPalindrome(SingleLinkedListNode curr_node)
+    {
+        SingleLinkedListNode stack_node=curr_node;
+        Stack<Integer> tmp_stack=new Stack<Integer>();
+        while(stack_node!=null)
+        {
+            tmp_stack.push(stack_node.data);
+            stack_node=stack_node.next;
+        }
+        SingleLinkedListNode final_node=curr_node;
+        boolean isPalindrome=true;
+        while(tmp_stack.empty()!=true&&final_node!=null)
+        {
+            if(tmp_stack.pop()!=final_node.data)
+            {
+                isPalindrome=false;
+                break;
+            }
+            final_node=final_node.next;
+        }
+        return isPalindrome;
+    }
+    public boolean checkPalindrome()
+    {
+        return checkPalindrome(this.root);
+    }
           
 }

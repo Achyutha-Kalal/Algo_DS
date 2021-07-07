@@ -65,7 +65,27 @@ public class BinarySearchTree {
 
         }
     }
+     //maximum of two functions
 
+     private int maximum(int a,int b)
+     {
+         if(a>=b)
+            return a;
+        else
+            return b;
+     }
+
+    // Find height of the tree
+
+    private int heightOfTree(BinaryNode node)
+    {
+        if(node==null)
+            return 0;
+        if(node.left==null && node.right==null && node!=null)
+            return 1; 
+        return 1+maximum(heightOfTree(node.left), heightOfTree(node.right));
+           
+    }
     // Root Node insertion method
     public void insertNode(int val) {
         this.root = insertRecursively(this.root, val);
@@ -107,5 +127,10 @@ public class BinarySearchTree {
         }
         this.root = curr;
     }
+    //Find Height of root tree
+    public int heightOfTree()
+    {
+        return heightOfTree(this.root);
+    } 
     
 }

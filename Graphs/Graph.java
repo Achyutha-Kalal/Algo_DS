@@ -1,50 +1,72 @@
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
 class Graph{
-    private Map<Vertex, List<Vertex>> adjList;
-    void addVertex(int node)
+    
+    private Map<Vertex,List<Vertex>> adjList;
+    //Add new Vertex to the graph 
+   private void addVertex(int k,Map<Vertex,List<Vertex>> adjList)
+   {
+       adjVertices.putIfAbsent(new Vertex(k),new ArrayList<>());
+   }
+   //Add new Vertex to the main graph
+   public void addVertex(int k)
+   {
+       addVertex(k,this.adjList);
+   }
+
+      //remove Vertex and all edges related to vertex in the graph
+   private void removeVertex(int k,Map<Vertex,List<Vertex>> adjList)
+   {
+       Vertex v= new Vertex(k);
+       adjList.values().stream().forEach(e->e.remove(v));
+       adjList.remove(new Vertex(k));
+   }
+      //remove Vertex and all edges related to vertex in the main graph
+   public void removeVertex(int k)
+   {
+       removeVertex(k,this.adjList);
+   }
+
+   //add edge related to vertex in the graph
+   private void addEdge(int vert,int edge,Map<Vertex,List<Vertex>> adjList)
+   {
+       Vertex v1=new Vertex(vert);
+       Vertex v2=new Vertex(edge);
+       adjList.get(v1).add(v2);
+       adjList.get(v2).add(v1);
+
+   }
+   //add edge related to vertex in the main graph
+   public void addEdge(int vert,int edge){
+       addEdge(vert, edge, this.adjList);
+   }
+
+    //remove edge related to vertex in the graph
+    private void removeEdge(int vert,int edge,Map<Vertex,List<Vertex>> adjList)
     {
-        adjList.put(new Vertex(node),new ArrayList<>());
+        Vertex v1=new Vertex(vert);
+        Vertex v2=new Vertex(edge);
+        List<Vertex> eV1=adjList.get(v1);
+        List<Vertex> eV2=adjList.get(v2);
+        if(ev1!=null)
+            eV1.remove(v2);
+        if(ev2!=null)
+            eV2.remove(v1);
+ 
     }
-    void removeVertex(int node)
+    //remove edge related to vertex in the main graph
+    public void removeEdge(int vert,int edge){
+        removeEdge(vert, edge, this.adjList);
+    }
+
+    //List all the edges from the given vertex of the graph
+    private List<Vertex> getEdges(int vert,Map<Vertex,List<Vertex>> adjList)
     {
-        Vertex v = new Vertex(node);
-        adjList.values().stream().forEach(e->e.remove(v));
-        adjList.remove(new Vertex(node));
+        return adjList.get(new Vertex(k));
     }
-    void addEdge(int node1,int node2)
+
+    //List all the edges from the given vertex of the main graph
+    public List<Vertex> getEdges(int vert)
     {
-        Vertex v1=new Vertex(node1);
-        Vertex v2=new Vertex(node2);
-        adjList.get(v1).add(v2);
-        adjList.get(v2).add(v1);
+        return getEdges(vert,this.adjList);
     }
-    void removeEdge(int node1,int node2)
-    {
-        Vertex v1=new Vertex(node1);
-        Vertex v2=new Vertex(node2);
-        List<Vertex> edgeList1=adjList.get(v1);
-        List<Vertex> edgeList2=adjList.get(v2);
-        if(edgeList1!=null)
-        {
-            edgeList1.remove(v2);
-        }
-        if(edgeList2!=null)
-        {
-            edgeList2.remove(v1);
-        }
-    }
-        void printGraph(ArrayList<ArrayList<Integer> > adj)
-    {
-        for (int i = 0; i < adj.size(); i++) {
-            System.out.println("\nAdjacency list of vertex" + i);
-            System.out.print("head");
-            for (int j = 0; j < adj.get(i).size(); j++) {
-                System.out.print(" -> "+adj.get(i).get(j));
-            }
-            System.out.println();
-        }
-    }
-    }
+
 }

@@ -1,7 +1,7 @@
 public class Vertex {
-    public int node;
+    int vertex;
 
     Vertex(int val) {
-        this.node = val;
+        this.vertex = val;
     }
 }
